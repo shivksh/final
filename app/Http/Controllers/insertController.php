@@ -57,13 +57,7 @@ class insertController extends Controller
     
             }
     
-            else{
-    
-                return $req;
-    
-                $movie->Image='';
-    
-            }
+            
     $movie->save();
     return redirect("/insert")->with('success' , 'Data Saved to ready_data table Successfully');
 
@@ -94,13 +88,7 @@ class insertController extends Controller
     
             }
     
-            else{
-    
-                return $req;
-    
-                $fitness->Image='';
-    
-            }
+            
     $fitness->save();
     return redirect("/insert")->with('success' , 'Data Saved to fitness_data table Successfully');
 
@@ -133,13 +121,7 @@ class insertController extends Controller
     
             }
     
-            else{
-    
-                return $req;
-    
-                $food->Image='';
-    
-            }
+            
     $food->save();
     return redirect("/insert")->with('success' , 'Data Saved to food_data table Successfully');
 
@@ -170,13 +152,6 @@ elseif($req->pass=='Others'){
 
         }
 
-        else{
-
-            return $req;
-
-            $other->Image='';
-
-        }
 $other->save();
 return redirect("/insert")->with('success' , 'Data Saved to other_data table Successfully');
 
@@ -210,13 +185,7 @@ elseif($req->pass=='Bussiness&Entrepreneurship'){
 
         }
 
-        else{
-
-            return $req;
-
-            $business->Image='';
-
-        }
+       
 $business->save();
 return redirect("/insert")->with('success' , 'Data Saved to business_data table Successfully');
 
@@ -245,13 +214,7 @@ return redirect("/insert")->with('success' , 'Data Saved to business_data table 
     
             }
     
-            else{
-    
-                return $req;
-    
-                $magzine->Image='';
-    
-            }
+           
     $magzine->save();
     return redirect("/insert")->with('success' , 'Data Saved to magzine_news table Successfully');
 
@@ -292,6 +255,27 @@ return redirect("/insert")->with('success' , 'Data Saved to business_data table 
         return view('otherPage',['other'=>$other]);
     }
 
+
+    public function edit($Id){
+        $student=completeData::find($Id);
+    return view('edit',compact('student'));
+        
+    }
+
+    public function upd(Request $req,$Id){
+        
+        $this->validate($req,[
+            'fname'=>'required',
+            'lname'=>'required',
+        ]);
+        //   $student=completeData::find($Id);
+         $firstname=$req->input('fname');
+         $lastname=$req->input('lname');
+        //   $student->save();
+        DB::update('update complete_data set firstname=?,lastname=? where Id=? ',[$firstname,$lastname,$Id]);
+          return redirect('/rn')->with('success', 'Data Edited SuccessFully');
+        //   dd($student);
+    }
 
 
 }

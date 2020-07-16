@@ -41,7 +41,7 @@ height:65vh;
     
 
  <div  class="container mt-5" id="main" >   
- <h3 class="mb-4 mt-5 ">Register Brand</h3>
+ <h3 class="mb-4 mt-5 ">Edit Brand</h3>
 
 
 
@@ -69,19 +69,20 @@ height:65vh;
 
 
 
- <form class="md-form" action="{{route('enterData')}}" enctype="multipart/form-data" method="post">
+ <form class="md-form" action="{{route('upd',$student->Id)}}" enctype="multipart/form-data" method="post">
    {{csrf_field()}}
+   {{method_field('PUT')}}
 
 <div class="form-group">
     <label for="exampleInputEmail1">Email address</label>
-    <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+    <input type="email" name="email"  value="{{$student->Email}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
     <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
   </div>
 
 
 <div class="form-group">
     <label for="exampleInputEmail1">Brand Name</label>
-    <input type="text" name="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Brand Name">
+    <input type="text" name="name" value="{{$student->Name}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Brand Name">
   </div>
   
   <div class="form-group mt-4" >
@@ -101,7 +102,7 @@ height:65vh;
   
   
 
-  <input type="file" name="image"><br>
+  <input type="file" name="image"  value="{{ $student->Image }}" ><br>
   <input class="btn btn-primary mt-4 mb-3" type="submit" value="Submit">
 
 

@@ -13,42 +13,71 @@ Dashboard | All data is here
           <div class="col-md-12">
             <div class="card">
               <div class="card-header">
-                <h4 class="card-title"> Simple Table</h4>
+                <h4 class="card-title"> Admin Dashboard</h4>
               </div>
               <div class="card-body">
                 <div class="table-responsive">
                   <table class="table">
                     <thead class=" text-primary">
                       <th>
-                        Name
+                        Brand Type
                       </th>
                       <th>
-                        Country
-                      </th>
-                      <th>
-                        City
-                      </th>
-                      <th class="text-right">
-                        Salary
-                      </th>
+Manage Brands                      </th>
+                      
                     </thead>
                     <tbody>
                       <tr>
                         <td>
-                            Shiv                        </td>
+                            Business&Enterpreneurship
+                                     </td>
                         <td>
-                          Niger
-                        </td>
+                        <button type="button" class="btn btn-primary btn-lg">Manage</button>                        </td>
+        
+                      </tr>
+                      <tr>
                         <td>
-                          Oud-Turnhout
-                        </td>
-                        <td class="text-right">
-                          $36,738
-                        </td>
+Movies&Entertainment                                     </td>
+                        <td>
+                        <button type="button" class="btn btn-primary btn-lg">Manage</button>                        </td>
+        
+                      </tr>
+                      <tr>
+                        <td>
+                            Food
+                                     </td>
+                        <td>
+                        <button type="button" class="btn btn-primary btn-lg">Manage</button>                        </td>
+        
+                      </tr>
+                      <tr>
+                        <td>
+                            Fitness&Sports
+                                     </td>
+                        <td>
+                        <button type="button" class="btn btn-primary btn-lg">Manage</button>                        </td>
+        
+                      </tr>
+                      <tr>
+                        <td>
+                            Magzines&Books
+                                     </td>
+                        <td>
+                        <button type="button" class="btn btn-primary btn-lg">Manage</button>                        </td>
+        
+                      </tr>
+                      <tr>
+                        <td>
+Other Brands                                     </td>
+                        <td>
+                        <button type="button" class="btn btn-primary btn-lg">Manage</button>                        </td>
+        
                       </tr>
                       
                     </tbody>
                   </table>
+                 <a href="{{route('insert')}}"> <button type="button" class="btn btn-primary btn-lg">Register New Brands</button></a>
+
                 </div>
               </div>
             </div>
