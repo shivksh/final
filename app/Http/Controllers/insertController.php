@@ -10,6 +10,12 @@ use App\fitnessData;
 use App\FoodData;
 use App\otherData;
 use App\BusinessData;
+use App\companyalldetails;
+use Illuminate\Support\Facades\DB;
+use App\reviewall;
+
+
+
 
 
 
@@ -26,23 +32,30 @@ class insertController extends Controller
             'name'=>'required',
             'pass'=>'required',
             'image'=>'required',
+            'ceo'=>'required',
+            'phone'=>'required',
+            'details'=>'required',
         ]);
 
-    $movie=new readyData;
     $magzine=new MagzineNews;
     $food=new FoodData;
     $fitness=new fitnessData;
     $other=new otherData;
     $business=new BusinessData;
+    $comDetails=new companyalldetails;
 
-    if($req->pass=="Movies&Entertainment"){
 
 
-        $movie->Email=$req->email;
 
-        $movie->Name=$req->name;
-    
-        $movie->Brand=$req->pass;
+        $comDetails->Email=$req->email;
+
+        $comDetails->Name=$req->name;
+        $comDetails->CEO=$req->ceo;
+        $comDetails->Contact=$req->phone;
+        $comDetails->Details=$req->details;
+        $comDetails->Website=$req->website;
+        $comDetails->Brand_Type=$req->pass;
+
         if($req->hasfile('image')){
     
                 $file = $req->file('image');
@@ -53,229 +66,361 @@ class insertController extends Controller
     
                 $file->move('uploads/Pics/',$filename);
     
-                $movie->Image=$filename;
+                $comDetails->Image=$filename;
     
             }
     
             
-    $movie->save();
-    return redirect("/insert")->with('success' , 'Data Saved to ready_data table Successfully');
+    $comDetails->save();
+    return redirect("/insert")->with('success' , 'Data Saved to table Successfully');
 
            
+        
         }
 
 
+    
+    
+//     elseif($req->pass=='Fitness&Sports'){
+//         $fitness->Email=$req->email;
 
+//         $fitness->Name=$req->name;
     
+//         $fitness->Brand=$req->pass;
+//         if($req->hasfile('image')){
     
-    elseif($req->pass=='Fitness&Sports'){
-        $fitness->Email=$req->email;
-
-        $fitness->Name=$req->name;
+//                 $file = $req->file('image');
     
-        $fitness->Brand=$req->pass;
-        if($req->hasfile('image')){
+//                 $extension=$file->getClientOriginalExtension();
     
-                $file = $req->file('image');
+//                 $filename = time(). '.'.$extension;
     
-                $extension=$file->getClientOriginalExtension();
+//                 $file->move('uploads/Pics/',$filename);
     
-                $filename = time(). '.'.$extension;
+//                 $fitness->Image=$filename;
     
-                $file->move('uploads/Pics/',$filename);
-    
-                $fitness->Image=$filename;
-    
-            }
+//             }
     
             
-    $fitness->save();
-    return redirect("/insert")->with('success' , 'Data Saved to fitness_data table Successfully');
+//     $fitness->save();
+//     return redirect("/insert")->with('success' , 'Data Saved to fitness_data table Successfully');
 
            
-        }
+//         }
     
 
     
     
-    // --------------------------------------------
+//     // --------------------------------------------
 
 
-    elseif($req->pass=='Foods'){
-        $food->Email=$req->email;
+//     elseif($req->pass=='Foods'){
+//         $food->Email=$req->email;
 
-        $food->Name=$req->name;
+//         $food->Name=$req->name;
     
-        $food->Brand=$req->pass;
-        if($req->hasfile('image')){
+//         $food->Brand=$req->pass;
+//         if($req->hasfile('image')){
     
-                $file = $req->file('image');
+//                 $file = $req->file('image');
     
-                $extension=$file->getClientOriginalExtension();
+//                 $extension=$file->getClientOriginalExtension();
     
-                $filename = time(). '.'.$extension;
+//                 $filename = time(). '.'.$extension;
     
-                $file->move('uploads/Pics/',$filename);
+//                 $file->move('uploads/Pics/',$filename);
     
-                $food->Image=$filename;
+//                 $food->Image=$filename;
     
-            }
+//             }
     
             
-    $food->save();
-    return redirect("/insert")->with('success' , 'Data Saved to food_data table Successfully');
+//     $food->save();
+//     return redirect("/insert")->with('success' , 'Data Saved to food_data table Successfully');
 
-        }
+//         }
     
 
     
 
-// -----------------
+// // -----------------
 
-elseif($req->pass=='Others'){
-    $other->Email=$req->email;
+// elseif($req->pass=='Others'){
+//     $other->Email=$req->email;
 
-    $other->Name=$req->name;
+//     $other->Name=$req->name;
 
-    $other->Brand=$req->pass;
-    if($req->hasfile('image')){
+//     $other->Brand=$req->pass;
+//     if($req->hasfile('image')){
 
-            $file = $req->file('image');
+//             $file = $req->file('image');
 
-            $extension=$file->getClientOriginalExtension();
+//             $extension=$file->getClientOriginalExtension();
 
-            $filename = time(). '.'.$extension;
+//             $filename = time(). '.'.$extension;
 
-            $file->move('uploads/Pics/',$filename);
+//             $file->move('uploads/Pics/',$filename);
 
-            $other->Image=$filename;
+//             $other->Image=$filename;
 
-        }
+//         }
 
-$other->save();
-return redirect("/insert")->with('success' , 'Data Saved to other_data table Successfully');
+// $other->save();
+// return redirect("/insert")->with('success' , 'Data Saved to other_data table Successfully');
 
-    }
-
-
+//     }
 
 
 
-// ---------------
+
+
+// // ---------------
 
 
 
-elseif($req->pass=='Bussiness&Entrepreneurship'){
-    $business->Email=$req->email;
+// elseif($req->pass=='Bussiness&Entrepreneurship'){
+//     $business->Email=$req->email;
 
-    $business->Name=$req->name;
+//     $business->Name=$req->name;
 
-    $business->Brand=$req->pass;
-    if($req->hasfile('image')){
+//     $business->Brand=$req->pass;
+//     if($req->hasfile('image')){
 
-            $file = $req->file('image');
+//             $file = $req->file('image');
 
-            $extension=$file->getClientOriginalExtension();
+//             $extension=$file->getClientOriginalExtension();
 
-            $filename = time(). '.'.$extension;
+//             $filename = time(). '.'.$extension;
 
-            $file->move('uploads/Pics/',$filename);
+//             $file->move('uploads/Pics/',$filename);
 
-            $business->Image=$filename;
+//             $business->Image=$filename;
 
-        }
+//         }
 
        
-$business->save();
-return redirect("/insert")->with('success' , 'Data Saved to business_data table Successfully');
+// $business->save();
+// return redirect("/insert")->with('success' , 'Data Saved to business_data table Successfully');
 
-    }
-
-
+//     }
 
 
-    elseif($req->pass=='Magzine&Books'){
-        $magzine->Email=$req->email;
+
+
+//     elseif($req->pass=='Magzine&Books'){
+//         $magzine->Email=$req->email;
     
-        $magzine->Name=$req->name;
+//         $magzine->Name=$req->name;
     
-        $magzine->Brand=$req->pass;
-        if($req->hasfile('image')){
+//         $magzine->Brand=$req->pass;
+//         if($req->hasfile('image')){
     
-                $file = $req->file('image');
+//                 $file = $req->file('image');
     
-                $extension=$file->getClientOriginalExtension();
+//                 $extension=$file->getClientOriginalExtension();
     
-                $filename = time(). '.'.$extension;
+//                 $filename = time(). '.'.$extension;
     
-                $file->move('uploads/Pics/',$filename);
+//                 $file->move('uploads/Pics/',$filename);
     
-                $magzine->Image=$filename;
+//                 $magzine->Image=$filename;
     
-            }
+//             }
     
            
-    $magzine->save();
-    return redirect("/insert")->with('success' , 'Data Saved to magzine_news table Successfully');
+//     $magzine->save();
+//     return redirect("/insert")->with('success' , 'Data Saved to magzine_news table Successfully');
 
            
-        }
+//         }
     
     
-    }
+//     }
 
     public function magzineFunc(){
-        $mag= MagzineNews::all();
+        $mag= companyalldetails::all();
         return view('magzinePage',['mag'=>$mag]);
     }
 
 
-    public function foodFunc(){
-        $food= FoodData::all();
-        return view('foodPage',['food'=>$food]);
-    }
-
-    public function fitFunc(){
-        $fit= fitnessData::all();
-        return view('fitnessPage',['fit'=>$fit]);
-    }
-
-    public function movieFunc(){
-        $films= readyData::all();
-        return view('moviePage',['films'=>$films]);
-    }
-
-    public function businessFunc(){
-        $business= BusinessData::all();
-        return view('businessPage',['business'=>$business]);
-    }
-
-    public function otherFunc(){
-        $other= otherData::all();
-        return view('otherPage',['other'=>$other]);
-    }
-
 
     public function edit($Id){
-        $student=completeData::find($Id);
-    return view('edit',compact('student'));
-        
+        $student=companyalldetails::find($Id);
+    return view('admin.editButton',compact('student'));
     }
 
-    public function upd(Request $req,$Id){
+
+    // public function foodFunc(){
+    //     $food= FoodData::all();
+    //     return view('foodPage',['food'=>$food]);
+    // }
+
+    // public function fitFunc(){
+    //     $fit= fitnessData::all();
+    //     return view('fitnessPage',['fit'=>$fit]);
+    // }
+
+    // public function movieFunc(){
+    //     $films= readyData::all();
+    //     return view('moviePage',['films'=>$films]);
+    // }
+
+    // public function businessFunc(){
+    //     $business= BusinessData::all();
+    //     return view('businessPage',['business'=>$business]);
+    // }
+
+    // public function otherFunc(){
+    //     $other= otherData::all();
+    //     return view('otherPage',['other'=>$other]);
+    // }
+
+
+    // public function edit($Id){
+    //     $student=completeData::find($Id);
+    // return view('edit',compact('student'));
         
-        $this->validate($req,[
-            'fname'=>'required',
-            'lname'=>'required',
-        ]);
-        //   $student=completeData::find($Id);
-         $firstname=$req->input('fname');
-         $lastname=$req->input('lname');
-        //   $student->save();
-        DB::update('update complete_data set firstname=?,lastname=? where Id=? ',[$firstname,$lastname,$Id]);
-          return redirect('/rn')->with('success', 'Data Edited SuccessFully');
-        //   dd($student);
-    }
+    // }
+
+    // public function upd(Request $req,$Id){
+        
+    //     $this->validate($req,[
+    //         'fname'=>'required',
+    //         'lname'=>'required',
+    //     ]);
+    //     //   $student=completeData::find($Id);
+    //      $firstname=$req->input('fname');
+    //      $lastname=$req->input('lname');
+    //     //   $student->save();
+    //     DB::update('update complete_data set firstname=?,lastname=? where Id=? ',[$firstname,$lastname,$Id]);
+    //       return redirect('/rn')->with('success', 'Data Edited SuccessFully');
+    //     //   dd($student);
+    // }
+
+
+    public function upd(Request $req, $Id){
+        //     $magzine= MagzineNews::find($Id);
+        //     $magzine->Email=$req->input('email');
+        
+        //     $magzine->Name=$req->input('name');
+        
+            
+        //     if($req->hasfile('image')){
+        
+        //             $file = $req->file('image');
+        
+        //             $extension=$file->getClientOriginalExtension();
+        
+        //             $filename = time(). '.'.$extension;
+        
+        //             $file->move('uploads/logoFile/',$filename);
+        
+        //             $magzine->Image=$filename;
+        
+        //         }
+        
+               
+        // $magzine->save();
+        // return redirect("/insert")->with('success' , 'Data Saved to magzine_news table Successfully');
+    
+               
+    
+    
+            // $student= MagzineNews::find($Id);
+            // $student->Email=$req->input('email');
+            // $student->Name=$req->input('name');
+            // if($req->hasFile('image')){
+    
+            //     $file = $req->file('image');
+    
+            //     $extension=$file->getClientOriginalExtension();
+    
+            //     $filename = time(). '.'.$extension;
+    
+            //     $file->move('uploads/Pics/'. $filename);
+    
+            //     $student->Image=$filename;
+    
+            // }
+            // $student->save();
+            
+    
+            $this->validate($req,[
+                'email'=>'required',
+            'name'=>'required',
+            'pass'=>'required',
+            'image'=>'required',
+            'ceo'=>'required',
+            'phone'=>'required',
+            'details'=>'required',
+            ]);
+            //   $student=completeData::find($Id);
+             $firstfill=$req->input('email');
+             $secondfill=$req->input('name');
+             $thirdfill=$req->input('pass');
+             $web=$req->input('website');
+             $fourthfill=$req->input('ceo');
+             $fifthfill=$req->input('phone');
+             $sixthfill=$req->input('details');
+
+
+             if($req->hasFile('image')){
+    
+                $file = $req->file('image');
+    
+                $extension=$file->getClientOriginalExtension();
+    
+                $filename = time(). '.'.$extension;
+    
+                $file->move('uploads/Pics/'. $filename);
+    
+                // $student->Image=$filename;
+             DB::update('update companyalldetails set Email=?,Name=?,Image=?,Brand_Type=?,Website=?,CEO=?,Contact=?,Details=? where Id=? ',[$firstfill,$secondfill,$filename,$thirdfill,$web,$fourthfill,$fifthfill,$sixthfill,$Id]);
+             return redirect('/reading')->with('success','Data Edited SuccessFully!!');
+            }
+            
+
+    
+        }
+    
+    
+        public function delete($Id){
+            DB::delete('delete from companyalldetails where Id=?',[$Id]);
+            return redirect('/reading')->with ('success', 'Data Deleted Succcessfully');
+        }
+
+
+
+        public function rateButton(Request $req){
+            $reviewDetails=new reviewall;
+      $reviewDetails->Name=$req->mag;
+      $reviewDetails->Brand_Type=$req->abc;
+      $reviewDetails->Reviews=$req->def;
+      $reviewDetails->Rating=(int)$req->ghi;
+      $reviewDetails->save();
+      return redirect(url('/index',$req->mag));
+        }
+
+
+        
+        public function index($Name){
+            $data = reviewall::select('*')
+            ->where('Name','=',$Name)
+            ->get();
+            $rating=DB::table('reviewalls')
+            ->where(['Name'=>$Name])
+            ->avg('Rating');
+          companyalldetails  ::where('Name',$Name)->update(array('Average'=>$rating));
+          $mag=companyalldetails::all();
+            return view('magzinePage',compact('mag'));
+        }
+
+    
+
+
+
+
+
 
 
 }

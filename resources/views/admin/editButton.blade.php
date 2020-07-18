@@ -21,7 +21,7 @@
 #main{
   margin:0 auto;
   width:28%;
-  height:65vh;
+  height:115vh;
   border-radius:2%;
   background-color:lightblue;
   transition:width .2s;
@@ -41,7 +41,7 @@ height:65vh;
     
 
  <div  class="container mt-5" id="main" >   
- <h3 class="mb-4 mt-5 ">Edit Brand</h3>
+ <h3 class="mb-4 mt-5 ">Register Brand</h3>
 
 
 
@@ -71,11 +71,9 @@ height:65vh;
 
  <form class="md-form" action="{{route('upd',$student->Id)}}" enctype="multipart/form-data" method="post">
    {{csrf_field()}}
-   {{method_field('PUT')}}
-
 <div class="form-group">
-    <label for="exampleInputEmail1">Email address</label>
-    <input type="email" name="email"  value="{{$student->Email}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+    <label for="exampleInputEmail1">Brand Email</label>
+    <input type="email" name="email" value="{{$student->Email}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
     <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
   </div>
 
@@ -84,10 +82,33 @@ height:65vh;
     <label for="exampleInputEmail1">Brand Name</label>
     <input type="text" name="name" value="{{$student->Name}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Brand Name">
   </div>
+
+  <div class="form-group">
+    <label for="exampleInputEmail1">CEO </label>
+    <input type="text" name="ceo" value="{{$student->CEO}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Brand Name">
+  </div>
+
+
+  <div class="form-group">
+    <label for="exampleInputEmail1">Company Contact</label>
+    <input type="text" name="phone" value="{{$student->Contact}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Brand Name">
+  </div>
   
+
+  <div class="form-group">
+    <label for="exampleInputEmail1">Details</label>
+    <input type="text" name="details" value="{{$student->Details}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Brand Name">
+  </div>
+
+  <div class="form-group">
+    <label for="exampleInputEmail1">Website</label>
+    <input type="text" name="website" value="{{$student->Website}}"  class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Brand Name">
+  </div>
+
+
   <div class="form-group mt-4" >
     <label for="exampleInputPassword1">Brand Type</label>
-  <select name="pass" id="pace" class="ml-4">
+  <select name="pass" value="{{$student->Brand_Type}}"  id="pace" class="ml-4">
     <option value="Movies&Entertainment">Movies&Entertainment</option>
     <option value="Magzine&Books">Magzine&Books</option>
     <option value="Bussiness&Entrepreneurship">Bussiness&Entrepreneurship</option>
@@ -102,7 +123,7 @@ height:65vh;
   
   
 
-  <input type="file" name="image"  value="{{ $student->Image }}" ><br>
+  <input type="file" name="image" value="{{$student->Image}}" ><br>
   <input class="btn btn-primary mt-4 mb-3" type="submit" value="Submit">
 
 

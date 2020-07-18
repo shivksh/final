@@ -42,18 +42,18 @@
       
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
       
-      <ul class="navbar-nav mr-auto ml-5">
+      <ul class="navbar-nav ml-auto ml-5">
       <div class="dropdown show">
       <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       Browse Categories  </a>
       
       <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-      <a class="dropdown-item" href="{{route('read')}}">Magzine&Books</a>
-      <a class="dropdown-item" href="{{route('sports')}}">Sports&Fitness</a>
-      <a class="dropdown-item" href="{{route('busines')}}">Bussiness&Entrepreneurship</a>
-      <a class="dropdown-item" href="{{route('studio')}}">Movies&Entertainment</a>
-      <a class="dropdown-item" href="{{route('eat')}}">Foods</a>
-      <a class="dropdown-item" href="{{route('other')}}">Others</a>
+      <a class="dropdown-item" href="">Magzine&Books</a>
+      <a class="dropdown-item" href="">Sports&Fitness</a>
+      <a class="dropdown-item" href="">Bussiness&Entrepreneurship</a>
+      <a class="dropdown-item" href="">Movies&Entertainment</a>
+      <a class="dropdown-item" href="">Foods</a>
+      <a class="dropdown-item" href="">Others</a>
       
       
       
@@ -62,48 +62,13 @@
       </ul>
       
       
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="#">Login <span class="sr-only"></span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Sign Up</a>
-        </li>
-        
-        
-      </ul>
-      
+    
       </div>
       </nav>
       
       
       
       </div>
-
-
-
-
-      @if(count($errors)>0)
-  <div class="alert alert-danger">
-  <ul>
-  
-  @foreach($errors->all() as $error)
-  <li>{{$error}}</li>  
-  @endforeach
-
-  
-  </ul>
-  </div>
-@endif
-
-@if(session('success'))
-<div class="alert alert-success">
-<h6>{{session('success')}}</h6>
-</div>
-@endif
-
-
-
       
         @yield('content')
 

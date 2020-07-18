@@ -71,9 +71,19 @@ Route::group(['middleware'=>['auth','admin']],function(){
 
 
 
-Route::get('/edit/{Id}','adminEdit@edit')->name('edit');   ////edit method
-Route::put('/update/{Id}','adminEdit@upd')->name('upd');  //update method
-Route::get('/delete/{Id}','adminEdit@delete')->name('delete'); 
+// Route::get('/edit/{Id}','adminEdit@edit')->name('edit');   ////edit method
+// Route::put('/update/{Id}','adminEdit@upd')->name('upd');  //update method
+// Route::get('/delete/{Id}','adminEdit@delete')->name('delete'); 
+// Route::get('/editButton',function(){
+//     return view('admin.editButton');
+// });
+
+Route::get('/edit/{Id}','insertController@edit')->name('edit');   ////edit method
+Route::post('/update/{Id}','insertController@upd')->name('upd');  //update method
+Route::get('/delete/{Id}','insertController@delete')->name('delete'); 
 Route::get('/editButton',function(){
     return view('admin.editButton');
 });
+
+Route::post('/reviews','insertController@rateButton')->name('reviews');
+Route::get('/index/{Name}','insertController@index')->name('index');   ////edit method

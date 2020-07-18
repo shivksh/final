@@ -20,8 +20,8 @@
 <style>
 #main{
   margin:0 auto;
-  width:28%;
-  height:65vh;
+  width:35%;
+  height:115vh;
   border-radius:2%;
   background-color:lightblue;
   transition:width .2s;
@@ -30,7 +30,6 @@
 
 #main:hover{
 width:30%;
-height:65vh;
 
 }
 
@@ -73,7 +72,7 @@ height:65vh;
    {{csrf_field()}}
 
 <div class="form-group">
-    <label for="exampleInputEmail1">Email address</label>
+    <label for="exampleInputEmail1">Brand Email</label>
     <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
     <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
   </div>
@@ -83,7 +82,30 @@ height:65vh;
     <label for="exampleInputEmail1">Brand Name</label>
     <input type="text" name="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Brand Name">
   </div>
+
+  <div class="form-group">
+    <label for="exampleInputEmail1">CEO </label>
+    <input type="text" name="ceo" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Who's CEO">
+  </div>
+
+
+  <div class="form-group">
+    <label for="exampleInputEmail1">Company Contact</label>
+    <input type="text" name="phone" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Contact">
+  </div>
   
+
+  <div class="form-group">
+    <label for="exampleInputEmail1">Details</label>
+    <input type="text" name="details" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter More Details">
+  </div>
+
+  <div class="form-group">
+    <label for="exampleInputEmail1">Website</label>
+    <input type="text" name="website" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Website Here">
+  </div>
+
+
   <div class="form-group mt-4" >
     <label for="exampleInputPassword1">Brand Type</label>
   <select name="pass" id="pace" class="ml-4">

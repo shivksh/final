@@ -98,6 +98,7 @@ class adminEdit extends Controller
         // }
         // $student->save();
         
+
         $this->validate($req,[
             'email'=>'required',
             'name'=>'required',
@@ -114,7 +115,7 @@ class adminEdit extends Controller
 
             $filename = time(). '.'.$extension;
 
-            $file->move('uploads/Pics/'. $filename);
+            $file->move('uploads/ddddd/'. $filename);
 
             // $student->Image=$filename;
          DB::update('update magzine_news set Email=?,Name=?,Image=? where Id=? ',[$firstfill,$secondfill,$filename,$Id]);

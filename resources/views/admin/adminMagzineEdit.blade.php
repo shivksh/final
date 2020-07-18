@@ -1,6 +1,6 @@
 
       
-      @extends('layouts.head');
+      @extends('layouts.adminLayout');
 
 @section('content')
 <div  class="container-fluid mt-4" style="margin=0 auto;width:90%" >
