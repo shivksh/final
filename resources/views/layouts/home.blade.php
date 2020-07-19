@@ -13,10 +13,13 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                    {{ __('You are logged in!') }                    
+                    {{ __('You are logged in!') }}               
                 </div>
             </div>
         </div>
     </div>
+</div>
+<div class="container mt-5" style="margin:0 auto; width:20%">
+<a href="{{route('read')}}"><input type="button"  class="btn btn-primary" value=" Click Here To Continue....."  ></a>
 </div>
 @endsection

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AlterTableCompanyalldetails extends Migration
+class AddLikeToCompanyalldetailsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,10 +14,11 @@ class AlterTableCompanyalldetails extends Migration
     public function up()
     {
         Schema::table('companyalldetails', function (Blueprint $table) {
-            $table->string('Brand_Type')->after('Brand Type');
-            $table->integer('Average')->nullable();
-            
-            });
+            //
+            $table->integer('Likes');
+            $table->integer('Total_reviews');
+
+        });
     }
 
     /**
@@ -28,9 +29,9 @@ class AlterTableCompanyalldetails extends Migration
     public function down()
     {
         Schema::table('companyalldetails', function (Blueprint $table) {
-            $table->dropColumn('Brand_Type');
-            $table->dropColumn('Average');
-            
-            });
+            //
+            $table->dropColumn('Likes');
+            $table->dropColumn('Total_reviews');
+        });
     }
 }

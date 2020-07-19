@@ -56,15 +56,15 @@ Route::get('otherbrands','insertController@otherFunc')->name('other');
 
 
 
-Auth::routes();
-Route::get('/home', 'HomeController@index')->name('home');
+Auth::routes(['verify'=>true]);
+Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
 
 
 Route::group(['middleware'=>['auth','admin']],function(){
 
     Route::get('/dashboard',function(){
         return view('admin.dashboard');
-    });
+    })->name('adDash');
 
 
 });
@@ -86,4 +86,11 @@ Route::get('/editButton',function(){
 });
 
 Route::post('/reviews','insertController@rateButton')->name('reviews');
-Route::get('/index/{Name}','insertController@index')->name('index');   ////edit method
+Route::get('/index/{Name}','insertController@index')->name('index');  
+Route::get('/','insertController@homePage')->name('homePage');
+Route::get('/review/{Name}','insertController@reviewdata')->name('review');  
+Route::get('/get',function(){
+    return view('reviewUsers');
+});
+
+Route::post('/addrev','insertController@addRev')->name('addRev');

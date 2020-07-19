@@ -62,7 +62,6 @@
       
       
       
-      
 
 
 
@@ -87,16 +86,103 @@
 @endif
 
 
+<div class="container mt-4" style="margin:0 auto; width:30%;background-color:lightblue">
+
+    <form name="checkup" method="post" action="{{route('addRev')}}">
+    {{ csrf_field() }}
+    <h1 class="mt-5"><i class="fa fa-star mr-2" aria-hidden="true"></i> {{ $names[0]->Average }}</h1>
+    <input id="inpjj" type="hidden" name="abc" value="{{ $names[0]->Brand_Type }}" ><br>
+
+    <div class="form-group mt-4" >
+    <label style="font-weight:bold;font-size:larger" for="exampleInputPassword1" >Rate Us</label>
+  <select name="ghi" id="pace" style="font-weight:bold;font-size:larger;width:20%"  class="ml-4">
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+    <option value="6">6</option>
+	<option value="7">7</option>
+    <option value="8">8</option>
+    <option value="9">9</option>
+    <option value="10">10</option>
+
+
+
+  </select> 
+   </div>
 
 
 
 
+    <input id="inp" type="text" name="in" ><br>
+    <button type="type" name="but" value="1" onclick="rev(); return false" class="btn btn-primary mt-2" ><i class="fa fa-thumbs-up" aria-hidden="true"></i>
+ </button>                
+
+    <!-- <button name="but" type='button' value="1" onclick="rev(); return false">click</button> -->
+    <input type="text"   name="def" placeholder ="Add Reviews" style="width:100%; height:50px"> <br>  
+    <input type="hidden" name="mag" value="{{ $names[0]->Name }}"><br>
+    
+    <button type="submit" class="btn btn-primary mt-2" style="width:100%"> Submit Your Review </button>                
+    
+</form>
 
 
-      
-        @yield('content')
+<h4 class="mt-4"> SEE Latest Reviews <i class="fa fa-commenting" aria-hidden="true"></i>
+</h4>
 
-        </div>
+
+<div class="mt-3">
+@for($i=0 ; $i < count($names); $i++)
+    <!-- <h6> {{ $names[$i]->Name }}</h6> -->
+
+      @for($j=count($rate)-1 ; $j >= 0; $j--)
+
+      @if(($rate[$j]->Reviews)!=NULL)
+       <h6  class="mt-3"> <i class="fa fa-hand-o-right mr-2" aria-hidden="true"></i>
+ {{ $rate[$j]->Reviews }}</h6>
+      @endif
+      @endfor
+
+    @endfor
+
+    </div>
+</div>
+
+
+       
+    </div>
+    <script>
+    
+    function rev(){
+    return document.checkup.in.value=document.checkup.but.value;
+}
+    
+    </script>
 
          </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

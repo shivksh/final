@@ -410,17 +410,65 @@ class insertController extends Controller
             $rating=DB::table('reviewalls')
             ->where(['Name'=>$Name])
             ->avg('Rating');
+            $likes=DB::table('reviewalls')
+            ->where(['Name'=>$Name])
+            ->sum('Likes');
           companyalldetails  ::where('Name',$Name)->update(array('Average'=>$rating));
+          companyalldetails  ::where('Name',$Name)->update(array('Likes'=>$likes));
+
           $mag=companyalldetails::all();
-            return view('magzinePage',compact('mag'));
+            return view('magzinePage',['mag'=>$mag]);
         }
 
     
 
 
 
+        public function homePage(){
+            $hom=companyalldetails::all();
+               return view('homePage',['hom'=>$hom]);
+        }
 
 
+        public function reviewdata($Name){
+            // $names=companyalldetails::find($Name);
+            // $names = companyalldetails::select('*')
+            // ->where('Name','=',$Name)
+            // ->get();
+            // $rate = reviewall::select('*')
+            // ->where('Name','=',$Name)
+            // ->get();
+        $names=DB::table('companyalldetails')->where('Name',$Name)->get();
+        $rate=DB::table('reviewalls')->where('Name',$Name)->get();
 
+
+            // $names=DB::table('companyalldetails')
+            // ->where(['Name'=>$Name]);
+            // // $student=completeData::find($Id);
+            // $rate=DB::table('reviewalls')
+            // ->where(['Name'=>$Name]);
+            // $rate=DB::table('reviewalls')
+            // ->where(['Name'=>$Name]);
+
+            // dd($names);
+            // $names=$names[0];
+            // $rate=$rate[0];
+            return view('reviewUsers',compact('names','rate','hom'));
+        }
+
+
+        public function addrev(Request $req){
+
+            $addRev=new reviewall;
+            $addRev->Name=$req->mag;
+            $addRev->Brand_Type=$req->abc;
+            $addRev->Reviews=$req->def;
+            $addRev->Rating=(int)$req->ghi;
+            $addRev->Likes=(int)$req->in;
+            $addRev->save();
+            return redirect(url('/index',$req->mag));
+
+
+        }
 
 }

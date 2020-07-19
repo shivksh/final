@@ -30,7 +30,6 @@
 
 #main:hover{
 width:30%;
-height:65vh;
 
 }
 
