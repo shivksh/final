@@ -59,13 +59,6 @@
       
       </div>
       </nav>
-      
-      
-      
-
-
-
-
       @if(count($errors)>0)
   <div class="alert alert-danger">
   <ul>
@@ -73,8 +66,6 @@
   @foreach($errors->all() as $error)
   <li>{{$error}}</li>  
   @endforeach
-
-  
   </ul>
   </div>
 @endif
@@ -115,42 +106,57 @@
 
 
 
-    <input id="inp" type="text" name="in" ><br>
+    <input id="inp" type="hidden" name="in" ><br>
     <button type="type" name="but" value="1" onclick="rev(); return false" class="btn btn-primary mt-2" ><i class="fa fa-thumbs-up" aria-hidden="true"></i>
  </button>                
 
     <!-- <button name="but" type='button' value="1" onclick="rev(); return false">click</button> -->
-    <input type="text"   name="def" placeholder ="Add Reviews" style="width:100%; height:50px"> <br>  
+    <input type="text" class="mt-3"  name="def" placeholder ="Add Reviews" style="width:100%; height:50px"> <br>  
     <input type="hidden" name="mag" value="{{ $names[0]->Name }}"><br>
     
     <button type="submit" class="btn btn-primary mt-2" style="width:100%"> Submit Your Review </button>                
     
 </form>
+ <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead class=" text-primary">
+                      <th>
+                        SEE Latest Reviews
+                      </th>
+                      
+                    </thead>
+                    <tbody>
+   @for($i=0 ; $i < count($names); $i++)
 
+@for($j=count($rate)-1 ; $j >= 0; $j--)
 
-<h4 class="mt-4"> SEE Latest Reviews <i class="fa fa-commenting" aria-hidden="true"></i>
-</h4>
+@if(($rate[$j]->Reviews)!=NULL)
+ <tr>   
+                        <td>
+                            <i class="fa fa-hand-o-right mr-2" aria-hidden="true"></i>
+{{ $rate[$j]->Reviews }}
+                                     </td>
 
+</tr>
 
-<div class="mt-3">
-@for($i=0 ; $i < count($names); $i++)
-    <!-- <h6> {{ $names[$i]->Name }}</h6> -->
+@endif
+@endfor
 
-      @for($j=count($rate)-1 ; $j >= 0; $j--)
+@endfor    
+                    </tbody>
+                  </table>
+                 <!-- <a href="{{route('insert')}}"> <button type="button" class="btn btn-primary btn-lg">Register New Brands</button></a> -->
 
-      @if(($rate[$j]->Reviews)!=NULL)
-       <h6  class="mt-3"> <i class="fa fa-hand-o-right mr-2" aria-hidden="true"></i>
- {{ $rate[$j]->Reviews }}</h6>
-      @endif
-      @endfor
-
-    @endfor
-
-    </div>
-</div>
-
-
-       
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> 
     </div>
     <script>
     

@@ -3,29 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\insertModel;
-use App\MagzineNews;
-use App\readyData;
-use App\fitnessData;
-use App\FoodData;
-use App\otherData;
-use App\BusinessData;
 use App\companyalldetails;
 use Illuminate\Support\Facades\DB;
 use App\reviewall;
+use App\User;
 
 
-
-
-
-
-
-
-
-
-class insertController extends Controller
+// -----------------------------------------------
+class insertController extends Controller           
 {
-    public function insertData(Request $req){
+    public function insertData(Request $req){                      //Insert method for admin new brand registration
 
         $this->validate($req,[
             'email'=>'required',
@@ -37,16 +24,7 @@ class insertController extends Controller
             'details'=>'required',
         ]);
 
-    $magzine=new MagzineNews;
-    $food=new FoodData;
-    $fitness=new fitnessData;
-    $other=new otherData;
-    $business=new BusinessData;
     $comDetails=new companyalldetails;
-
-
-
-
         $comDetails->Email=$req->email;
 
         $comDetails->Name=$req->name;
@@ -69,282 +47,94 @@ class insertController extends Controller
                 $comDetails->Image=$filename;
     
             }
-    
-            
     $comDetails->save();
-    return redirect("/insert")->with('success' , 'Data Saved to table Successfully');
-
-           
-        
+    return redirect("/insert")->with('success' , 'Data Saved to table Successfully'); 
         }
 
 
-    
-    
-//     elseif($req->pass=='Fitness&Sports'){
-//         $fitness->Email=$req->email;
 
-//         $fitness->Name=$req->name;
-    
-//         $fitness->Brand=$req->pass;
-//         if($req->hasfile('image')){
-    
-//                 $file = $req->file('image');
-    
-//                 $extension=$file->getClientOriginalExtension();
-    
-//                 $filename = time(). '.'.$extension;
-    
-//                 $file->move('uploads/Pics/',$filename);
-    
-//                 $fitness->Image=$filename;
-    
-//             }
-    
-            
-//     $fitness->save();
-//     return redirect("/insert")->with('success' , 'Data Saved to fitness_data table Successfully');
-
-           
-//         }
-    
-
-    
-    
-//     // --------------------------------------------
-
-
-//     elseif($req->pass=='Foods'){
-//         $food->Email=$req->email;
-
-//         $food->Name=$req->name;
-    
-//         $food->Brand=$req->pass;
-//         if($req->hasfile('image')){
-    
-//                 $file = $req->file('image');
-    
-//                 $extension=$file->getClientOriginalExtension();
-    
-//                 $filename = time(). '.'.$extension;
-    
-//                 $file->move('uploads/Pics/',$filename);
-    
-//                 $food->Image=$filename;
-    
-//             }
-    
-            
-//     $food->save();
-//     return redirect("/insert")->with('success' , 'Data Saved to food_data table Successfully');
-
-//         }
-    
-
-    
-
-// // -----------------
-
-// elseif($req->pass=='Others'){
-//     $other->Email=$req->email;
-
-//     $other->Name=$req->name;
-
-//     $other->Brand=$req->pass;
-//     if($req->hasfile('image')){
-
-//             $file = $req->file('image');
-
-//             $extension=$file->getClientOriginalExtension();
-
-//             $filename = time(). '.'.$extension;
-
-//             $file->move('uploads/Pics/',$filename);
-
-//             $other->Image=$filename;
-
-//         }
-
-// $other->save();
-// return redirect("/insert")->with('success' , 'Data Saved to other_data table Successfully');
-
-//     }
+        // ----------------------------------------------------------
 
 
 
 
-
-// // ---------------
-
-
-
-// elseif($req->pass=='Bussiness&Entrepreneurship'){
-//     $business->Email=$req->email;
-
-//     $business->Name=$req->name;
-
-//     $business->Brand=$req->pass;
-//     if($req->hasfile('image')){
-
-//             $file = $req->file('image');
-
-//             $extension=$file->getClientOriginalExtension();
-
-//             $filename = time(). '.'.$extension;
-
-//             $file->move('uploads/Pics/',$filename);
-
-//             $business->Image=$filename;
-
-//         }
-
-       
-// $business->save();
-// return redirect("/insert")->with('success' , 'Data Saved to business_data table Successfully');
-
-//     }
-
-
-
-
-//     elseif($req->pass=='Magzine&Books'){
-//         $magzine->Email=$req->email;
-    
-//         $magzine->Name=$req->name;
-    
-//         $magzine->Brand=$req->pass;
-//         if($req->hasfile('image')){
-    
-//                 $file = $req->file('image');
-    
-//                 $extension=$file->getClientOriginalExtension();
-    
-//                 $filename = time(). '.'.$extension;
-    
-//                 $file->move('uploads/Pics/',$filename);
-    
-//                 $magzine->Image=$filename;
-    
-//             }
-    
-           
-//     $magzine->save();
-//     return redirect("/insert")->with('success' , 'Data Saved to magzine_news table Successfully');
-
-           
-//         }
-    
-    
-//     }
-
-    public function magzineFunc(){
+    public function magzineFunc(){            //retrieving data from companyalldetails table
         $mag= companyalldetails::all();
         return view('magzinePage',['mag'=>$mag]);
     }
 
 
+    // ----------------------------------------------
 
-    public function edit($Id){
+
+
+    public function dashFunc(){                   //retrieving data from comapnyalldetails table for brands data manage by admin. 
+        $mag= companyalldetails::all();
+        return view('admin.adminTable',['mag'=>$mag]);
+    }
+
+    //-------------------------------------------------
+
+
+
+    public function userManage(){                   //user data manage by admin dashboard 
+        $mag= DB::select('select * from users');
+        return view('admin.adminUserManage',['mag'=>$mag]);
+    }
+
+// -------------------------------------------------------------
+
+
+    public function myprofile(){                      //saving admin profile to dashboard
+        $mag= DB::select('select * from users');
+        return view('admin.myprofile',['mag'=>$mag]);
+    }
+
+
+// --------------------------------------------------------------
+
+
+    public function edit($Id){                            
         $student=companyalldetails::find($Id);
     return view('admin.editButton',compact('student'));
     }
 
+// ---------------------------------------------------------------
 
-    // public function foodFunc(){
-    //     $food= FoodData::all();
-    //     return view('foodPage',['food'=>$food]);
-    // }
+    public function userEdit($id){
+        $student=User::find($id);
+            return view('admin.userManageForm',compact('student'));
+    }
 
-    // public function fitFunc(){
-    //     $fit= fitnessData::all();
-    //     return view('fitnessPage',['fit'=>$fit]);
-    // }
+// -----------------------------------------------
 
-    // public function movieFunc(){
-    //     $films= readyData::all();
-    //     return view('moviePage',['films'=>$films]);
-    // }
+    public function userDelete($id){
+        DB::delete('delete from users where id=?',[$id]);
+        return redirect('/userManage')->with ('success', 'Data Deleted Succcessfully');
+    }
 
-    // public function businessFunc(){
-    //     $business= BusinessData::all();
-    //     return view('businessPage',['business'=>$business]);
-    // }
-
-    // public function otherFunc(){
-    //     $other= otherData::all();
-    //     return view('otherPage',['other'=>$other]);
-    // }
+// --------------------------------------------------------
 
 
-    // public function edit($Id){
-    //     $student=completeData::find($Id);
-    // return view('edit',compact('student'));
+    public function update(Request $req,$id){
         
-    // }
+        $this->validate($req,[
+            'email'=>'required',
+            'name'=>'required',
+            'phone'=>'required',
+        ]);
+         $first=$req->input('name');
+         $second=$req->input('email');
+         $last=$req->input('phone');
 
-    // public function upd(Request $req,$Id){
-        
-    //     $this->validate($req,[
-    //         'fname'=>'required',
-    //         'lname'=>'required',
-    //     ]);
-    //     //   $student=completeData::find($Id);
-    //      $firstname=$req->input('fname');
-    //      $lastname=$req->input('lname');
-    //     //   $student->save();
-    //     DB::update('update complete_data set firstname=?,lastname=? where Id=? ',[$firstname,$lastname,$Id]);
-    //       return redirect('/rn')->with('success', 'Data Edited SuccessFully');
-    //     //   dd($student);
-    // }
+        DB::update('update users set name=?,email=?,phone=? where Id=? ',[$first,$second,$last,$id]);
+          return redirect('/userManage')->with('success', 'Data Edited SuccessFully');
+    }
 
+// ------------------------------------------------------------
 
-    public function upd(Request $req, $Id){
-        //     $magzine= MagzineNews::find($Id);
-        //     $magzine->Email=$req->input('email');
-        
-        //     $magzine->Name=$req->input('name');
-        
             
-        //     if($req->hasfile('image')){
-        
-        //             $file = $req->file('image');
-        
-        //             $extension=$file->getClientOriginalExtension();
-        
-        //             $filename = time(). '.'.$extension;
-        
-        //             $file->move('uploads/logoFile/',$filename);
-        
-        //             $magzine->Image=$filename;
-        
-        //         }
-        
-               
-        // $magzine->save();
-        // return redirect("/insert")->with('success' , 'Data Saved to magzine_news table Successfully');
-    
-               
-    
-    
-            // $student= MagzineNews::find($Id);
-            // $student->Email=$req->input('email');
-            // $student->Name=$req->input('name');
-            // if($req->hasFile('image')){
-    
-            //     $file = $req->file('image');
-    
-            //     $extension=$file->getClientOriginalExtension();
-    
-            //     $filename = time(). '.'.$extension;
-    
-            //     $file->move('uploads/Pics/'. $filename);
-    
-            //     $student->Image=$filename;
-    
-            // }
-            // $student->save();
-            
-    
+            public function upd(Request $req, $Id){
             $this->validate($req,[
                 'email'=>'required',
             'name'=>'required',
@@ -354,7 +144,6 @@ class insertController extends Controller
             'phone'=>'required',
             'details'=>'required',
             ]);
-            //   $student=completeData::find($Id);
              $firstfill=$req->input('email');
              $secondfill=$req->input('name');
              $thirdfill=$req->input('pass');
@@ -376,22 +165,30 @@ class insertController extends Controller
     
                 // $student->Image=$filename;
              DB::update('update companyalldetails set Email=?,Name=?,Image=?,Brand_Type=?,Website=?,CEO=?,Contact=?,Details=? where Id=? ',[$firstfill,$secondfill,$filename,$thirdfill,$web,$fourthfill,$fifthfill,$sixthfill,$Id]);
-             return redirect('/reading')->with('success','Data Edited SuccessFully!!');
+             return redirect('/adminTable')->with('success','Data Edited SuccessFully!!');
             }
             
 
     
         }
+
+
+        // ----------------------------------------
+
+
+
     
     
-        public function delete($Id){
+        public function delete($Id){               //delete data from companyalldetails table
             DB::delete('delete from companyalldetails where Id=?',[$Id]);
-            return redirect('/reading')->with ('success', 'Data Deleted Succcessfully');
+            return redirect('/adminTable')->with ('success', 'Data Deleted Succcessfully');
         }
 
+// --------------------------------------------------------------------
 
 
-        public function rateButton(Request $req){
+
+        public function rateButton(Request $req){         //adding data to reviewall table
             $reviewDetails=new reviewall;
       $reviewDetails->Name=$req->mag;
       $reviewDetails->Brand_Type=$req->abc;
@@ -401,9 +198,11 @@ class insertController extends Controller
       return redirect(url('/index',$req->mag));
         }
 
+// ===========================================================
+
 
         
-        public function index($Name){
+        public function index($Name){                //data stored from reviewall details table to companyalldetails applying various aggregate functions 
             $data = reviewall::select('*')
             ->where('Name','=',$Name)
             ->get();
@@ -413,52 +212,43 @@ class insertController extends Controller
             $likes=DB::table('reviewalls')
             ->where(['Name'=>$Name])
             ->sum('Likes');
+            $comm=DB::table('reviewalls')
+            ->where(['Name'=>$Name])
+            ->count('Reviews');
+
           companyalldetails  ::where('Name',$Name)->update(array('Average'=>$rating));
           companyalldetails  ::where('Name',$Name)->update(array('Likes'=>$likes));
+          companyalldetails  ::where('Name',$Name)->update(array('Total_reviews'=>$comm));
+
 
           $mag=companyalldetails::all();
             return view('magzinePage',['mag'=>$mag]);
         }
 
-    
+    // ===============================================================
 
 
 
-        public function homePage(){
+
+        public function homePage(){               
             $hom=companyalldetails::all();
                return view('homePage',['hom'=>$hom]);
         }
 
 
+// ===================================================================
+
         public function reviewdata($Name){
-            // $names=companyalldetails::find($Name);
-            // $names = companyalldetails::select('*')
-            // ->where('Name','=',$Name)
-            // ->get();
-            // $rate = reviewall::select('*')
-            // ->where('Name','=',$Name)
-            // ->get();
         $names=DB::table('companyalldetails')->where('Name',$Name)->get();
         $rate=DB::table('reviewalls')->where('Name',$Name)->get();
-
-
-            // $names=DB::table('companyalldetails')
-            // ->where(['Name'=>$Name]);
-            // // $student=completeData::find($Id);
-            // $rate=DB::table('reviewalls')
-            // ->where(['Name'=>$Name]);
-            // $rate=DB::table('reviewalls')
-            // ->where(['Name'=>$Name]);
-
-            // dd($names);
-            // $names=$names[0];
-            // $rate=$rate[0];
             return view('reviewUsers',compact('names','rate','hom'));
         }
 
 
-        public function addrev(Request $req){
+// ========================================================================
 
+
+        public function addrev(Request $req){
             $addRev=new reviewall;
             $addRev->Name=$req->mag;
             $addRev->Brand_Type=$req->abc;
@@ -467,8 +257,51 @@ class insertController extends Controller
             $addRev->Likes=(int)$req->in;
             $addRev->save();
             return redirect(url('/index',$req->mag));
-
-
         }
+
+
+// ==================================================================
+
+
+
+        public function adminCheckReview($Name){           //reviews of each brand check by admin
+            $names=DB::table('companyalldetails')->where('Name',$Name)->get();
+            $rate=DB::table('reviewalls')->where('Name',$Name)->get();
+                return view('admin.adminCheckReview',compact('names','rate','hom'));
+            }
+
+
+// ==========================================================================
+
+
+
+public function searchbar(){         //without login search for user
+    $search=$_GET['query'];
+    $result=companyalldetails::where('Name','LIKE','%'.$search.'%')->get();
+    return view('searchHome',compact('result'));
+}
+
+
+// =============================================================================
+
+
+public function magSearch(){        //magzinePage search for user
+
+    $search=$_GET['query'];
+    $result=companyalldetails::where('Name','LIKE','%'.$search.'%')->get();
+    return view('magzineSearch',compact('result'));
+}
+
+
+// ==========================================================================
+
+
+public function dashSearch(){         //admin search bar for brands manage
+    $search=$_GET['query'];
+    $result=companyalldetails::where('Name','LIKE','%'.$search.'%')->get();
+    return view('admin.dashboardSearch',compact('result'));
+}
+
+
 
 }

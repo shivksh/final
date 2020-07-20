@@ -18,22 +18,37 @@
       <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
   
+<style>
 
+
+
+
+</style>
 
 
 </head>
    <body>
    <div  class="container-fluid" style="margin=0 auto;width:90%" > 
       <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
-      <a   href="{{url('/')}}">
-          <img src="logoFile/logo.png" class="logo"></a>  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <a href="{{url('/')}}">
+          <img src="logoFile/logo.png" class="logo mr-4"></a>  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
       </button>
       
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
       
+   
       
-      
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+        <form class="form-inline my-2 my-lg-0"  type="get" action="{{ url('/searchbar') }}" >
+      <input class="form-control mr-sm-2" name="query" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>        </li>
+
+      </ul>
+
+
       
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
@@ -86,5 +101,11 @@
         @yield('content')
 
         </div>
+        
          </body>
+         <footer class="mt-5" id="footer" style="position:fixed, bottom:0" >
+<div class="footer-copyright text-center py-3 -dark bg-dark" style="color:white">© 2020 Copyright:
+    <a href="{{url('/')}}">ReviewAdd.com</a>
+  </div>
+<footer>
 </html>

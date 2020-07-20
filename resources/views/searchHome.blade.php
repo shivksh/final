@@ -1,12 +1,8 @@
-
-      
-      @extends('layouts.head');
+@extends('layouts.head');
 
 @section('content')
-<div  class="container-fluid mt-4"  >
-
 <div class='row'>
-@foreach($hom as $magzine)
+@foreach($result as $magzine)
 
 <div class="col-sm-12 col-lg-3">
                      <div class="card mt-2" style="width: 18rem;">
@@ -25,10 +21,9 @@
                          <a class="btn btn-primary" href="{{route('adDash')}}" role="button">Rate</a>                         
                      </div>
     </div>
-  
-  @endforeach
-  
 
+
+@endforeach
 
 
 

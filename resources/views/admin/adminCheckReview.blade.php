@@ -9,37 +9,39 @@ Dashboard | All data is here
 
 @section('content')
 
-<!-- <div class="row">
+ <div class="row">
           <div class="col-md-12">
             <div class="card">
               <div class="card-header">
-                <h4 class="card-title"> Admin Dashboard</h4>
+                <h4 class="card-title">{{ $names[0]->Name  }}</h4>
               </div>
               <div class="card-body">
                 <div class="table-responsive">
                   <table class="table">
                     <thead class=" text-primary">
                       <th>
-                        Brand Name
+Reviews
                       </th>
-                      <th>
-Manage Brands                      </th>
                       
                     </thead>
                     <tbody>
-                      <tr>
+                    @for($i=0 ; $i < count($names); $i++)
+
+@for($j=count($rate)-1 ; $j >= 0; $j--)
+
+@if(($rate[$j]->Reviews)!=NULL)
+ <tr>   
                         <td>
-                            Business&Enterpreneurship
+                            <i class="fa fa-hand-o-right mr-2" aria-hidden="true"></i>
+{{ $rate[$j]->Reviews }}
                                      </td>
-                        <td>
-                        <button type="button" class="btn btn-primary btn-lg">Manage</button>                        </td>
-        
-                      </tr>
-                      
-                        
-                      
-                      
-                     
+
+</tr>
+
+@endif
+@endfor
+
+@endfor    
                       
                     </tbody>
                   </table>
@@ -49,8 +51,8 @@ Manage Brands                      </th>
               </div>
             </div>
           </div>
-        </div> -->
-        <a href="{{route('dashData')}}"> <button type="button" class="btn btn-primary btn-lg mt-5">Click Admin Dashboard</button></a>
+        </div> 
+        <a href="{{route('dashData')}}"> <button type="button" class="btn btn-primary btn-lg mt-5">Back to Admin Dashboard</button></a>
 
 
 

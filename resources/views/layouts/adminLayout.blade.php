@@ -26,18 +26,27 @@
    <div  class="container-fluid" style="margin=0 auto;width:90%" > 
       <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
       <a   href="{{url('/')}}">
-          <img src="logoFile/logo.png" class="logo"></a>  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <img src="logoFile/logo.png" class="logo mr-4"></a>  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
       </button>
       
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
       
       
-      
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+        <form class="form-inline my-2 my-lg-0"  type="get" action="{{ url('/magSearch') }}" >
+      <input class="form-control mr-sm-2" name="query" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>        </li>
+
+      </ul>
+
+
       
       <ul class="navbar-nav ml-auto">
       <li class="nav-item dropdown" style="font-size: larger;font-weight: 600;">
-                                <a id="navbarDropdown"    class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
@@ -99,4 +108,13 @@
         </div>
 
          </body>
+
+         <footer class="mt-5">
+<div class="footer-copyright text-center py-3 -dark bg-dark" style="color:white;position:fixed, bottom:0">© 2020 Copyright:
+    <a href="{{url('/')}}">ReviewAdd.com</a>
+  </div>
+<footer>
+
+
+
 </html>
