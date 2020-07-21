@@ -93,13 +93,16 @@ Check Reviews                      </th>
                      
                     </tbody>
                   </table>
+                  <div>
+        {{$mag->links()}}
+        </div>
                  <a href="{{route('insert')}}"> <button type="button" class="btn btn-primary btn-lg">Register New Brands</button></a>
-
                 </div>
               </div>
             </div>
           </div>
         </div>
+        
 
 
 @endsection

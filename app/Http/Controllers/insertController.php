@@ -10,6 +10,9 @@ use App\User;
 
 
 // -----------------------------------------------
+
+
+
 class insertController extends Controller           
 {
     public function insertData(Request $req){                      //Insert method for admin new brand registration
@@ -69,7 +72,7 @@ class insertController extends Controller
 
 
     public function dashFunc(){                   //retrieving data from comapnyalldetails table for brands data manage by admin. 
-        $mag= companyalldetails::all();
+        $mag= DB:: table('companyalldetails')->paginate(3);
         return view('admin.adminTable',['mag'=>$mag]);
     }
 
@@ -78,7 +81,7 @@ class insertController extends Controller
 
 
     public function userManage(){                   //user data manage by admin dashboard 
-        $mag= DB::select('select * from users');
+        $mag= DB::table('users')->paginate(3);
         return view('admin.adminUserManage',['mag'=>$mag]);
     }
 

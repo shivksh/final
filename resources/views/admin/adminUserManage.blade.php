@@ -63,7 +63,9 @@ Delete                      </th>
                      
                     </tbody>
                   </table>
-
+                  <div>
+        {{$mag->links()}}
+        </div>
                 </div>
               </div>
             </div>
