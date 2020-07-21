@@ -6,7 +6,7 @@
 <div  class="container-fluid mt-4" >
 
 <div class='row'>
-@foreach($resultx as $magzine)
+@foreach($result as $magzine)
 
 <div class="col-sm-12 col-lg-3">
                      <div class="card" >

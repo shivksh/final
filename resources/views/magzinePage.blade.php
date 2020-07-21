@@ -9,7 +9,7 @@
       @foreach($mag as $magzine)
 
       <div class="col-sm-12 col-lg-3">
-      		 			<div class="card" >
+      		 			<div class="card mt-3" style="width: 18rem;" >
       		 				<img src="{{ asset('uploads/Pics/' . $magzine->Image) }}" class="card-img-top">
 
       		 				<div class="card-body">
@@ -54,7 +54,6 @@
       		 			
       	</div>
 		 
-        <hr>
         @endforeach
 
 

@@ -111,7 +111,7 @@
 
          <footer class="mt-5">
 <div class="footer-copyright text-center py-3 -dark bg-dark" style="color:white;position:fixed, bottom:0">© 2020 Copyright:
-    <a href="{{url('/')}}">ReviewAdd.com</a>
+    <a href="{{url('/')}}">ReviewAdda.com</a>
   </div>
 <footer>
 
