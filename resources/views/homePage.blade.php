@@ -8,11 +8,10 @@
 <div class='row'>
 @foreach($hom as $magzine)
 
-<div class="col-sm-12 col-lg-3">
-                     <div class="card mt-2" style="width: 18rem;">
-                         <img src="{{ asset('uploads/Pics/' . $magzine->Image) }}" class="card-img-top">
-                         
-                            
+<div class="card-group">
+
+                     <div class="card mt-3" style="width: 18rem;">
+                         <img src="{{ asset('uploads/Pics/' . $magzine->Image) }}" class="card-img-top"> 
                          <div class="card-body">
                              <h4 class="card-title">{{$magzine->Name}}</h4>  
                              <h6  class="card-text">{{$magzine->Details}}</h6>
@@ -21,7 +20,7 @@
     {{$magzine->Total_reviews}}        </h4>    
                              <h5 class="card-text">{{$magzine->Website}}</h5>
 
-                         </div>
+                          </div>
                          <a class="btn btn-primary" href="{{route('adDash')}}" role="button">Rate</a>                         
                      </div>
     </div>
