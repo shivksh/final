@@ -7,6 +7,8 @@ use App\companyalldetails;
 use Illuminate\Support\Facades\DB;
 use App\reviewall;
 use App\User;
+use Auth;
+
 
 
 // -----------------------------------------------
@@ -176,6 +178,8 @@ class insertController extends Controller
         }
 
 
+
+
         // ----------------------------------------
 
 
@@ -197,6 +201,7 @@ class insertController extends Controller
       $reviewDetails->Brand_Type=$req->abc;
       $reviewDetails->Reviews=$req->def;
       $reviewDetails->Rating=(int)$req->ghi;
+      $reviewDetails->userName=Auth::User()->name;
       $reviewDetails->save();
       return redirect(url('/index',$req->mag));
         }
@@ -228,6 +233,8 @@ class insertController extends Controller
             return view('magzinePage',['mag'=>$mag]);
         }
 
+    
+
     // ===============================================================
 
 
@@ -241,11 +248,26 @@ class insertController extends Controller
 
 // ===================================================================
 
+
         public function reviewdata($Name){
         $names=DB::table('companyalldetails')->where('Name',$Name)->get();
         $rate=DB::table('reviewalls')->where('Name',$Name)->get();
             return view('reviewUsers',compact('names','rate','hom'));
         }
+
+
+
+        // ====================================================
+
+
+        public function res($rev){
+            $data=DB::table('reviewalls')->where('Reviews',$rev)->update([
+                    'Comments'=>'1',
+                ]);
+               return redirect ('/adminTable');
+        }
+  
+
 
 
 // ========================================================================
@@ -257,7 +279,8 @@ class insertController extends Controller
             $addRev->Brand_Type=$req->abc;
             $addRev->Reviews=$req->def;
             $addRev->Rating=(int)$req->ghi;
-            $addRev->Likes=(int)$req->in;
+            $addRev->Likes=(int)$req->in; 
+            $addRev->userName=Auth::User()->name;
             $addRev->save();
             return redirect(url('/index',$req->mag));
         }

@@ -72,4 +72,4 @@ Route::get('/profile','insertController@myprofile')->name('profile');     //admi
 
 
 
-
+Route::get('/resolve/{Reviews}','insertController@res')->name('resolve');

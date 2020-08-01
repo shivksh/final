@@ -22,6 +22,18 @@ Dashboard | All data is here
                       <th>
 Reviews
                       </th>
+                      <th>
+Reviewed By
+                      </th>
+
+                      <th>
+Reviewed On
+                      </th>
+
+                      <th>
+Activity
+                      </th>
+
                       
                     </thead>
                     <tbody>
@@ -35,6 +47,19 @@ Reviews
                             <i class="fa fa-hand-o-right mr-2" aria-hidden="true"></i>
 {{ $rate[$j]->Reviews }}
                                      </td>
+                                     <td>
+                            <i class="fa fa-hand-o-right mr-2" aria-hidden="true"></i>
+{{ $rate[$j]->userName }}
+                                     </td>
+                                     <td>
+                            <i class="fa fa-hand-o-right mr-2" aria-hidden="true"></i>
+{{ $rate[$j]-> created_at }}
+                                     </td>
+                                     <td>
+                            <i class="fa fa-hand-o-right mr-2" aria-hidden="true"></i>
+                            <a href="{{ route('resolve',  $rate[$j]->Reviews  ) }}"> <button type="button" class="btn btn-primary btn-lg">Resolve </button></a>
+                                     </td>
+                                     
 
 </tr>
 

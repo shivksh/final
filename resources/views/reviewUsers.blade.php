@@ -78,6 +78,8 @@
 
 
 <div class="container mt-4" style="margin:0 auto; width:30%;background-color:lightblue">
+<label style="font-weight:Bold;font-size:larger"  >{{ $names[0]->Name }}</label>
+
 
     <form name="checkup" method="post" action="{{route('addRev')}}">
     {{ csrf_field() }}
@@ -105,7 +107,6 @@
 
 
 
-
     <input id="inp" type="hidden" name="in" ><br>
     <button type="type" name="but" value="1" onclick="rev(); return false" class="btn btn-primary mt-2" ><i class="fa fa-thumbs-up" aria-hidden="true"></i>
  </button>                
@@ -128,6 +129,10 @@
                       <th>
                         SEE Latest Reviews
                       </th>
+
+                      <th>
+                        Activity
+                      </th>
                       
                     </thead>
                     <tbody>
@@ -141,9 +146,15 @@
                             <i class="fa fa-hand-o-right mr-2" aria-hidden="true"></i>
 {{ $rate[$j]->Reviews }}
                                      </td>
+                                     
+@if(($rate[$j]->Comments)=='1')
+<td>
+                            
+<label >Resolved</label>
+                                     </td>
 
+                                     @endif
 </tr>
-
 @endif
 @endfor
 
